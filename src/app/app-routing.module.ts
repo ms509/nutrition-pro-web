@@ -20,7 +20,7 @@ const routes: Routes = [
   },
   {
     path: 'recipes/home',
-    component: AddRecipeComponent
+    component: HomePageComponent
   }
 ];
 
