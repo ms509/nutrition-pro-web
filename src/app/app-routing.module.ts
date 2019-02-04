@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { RecipesListComponent } from './recipes-list/recipes-list.component';
 import { AddRecipeComponent } from './recipes/add-recipe/add-recipe.component';
 import { RecipesComponent } from './recipes/recipes.component';
+import { HomePageComponent } from './recipes/home-page/home-page.component';
 
 
 const routes: Routes = [
@@ -15,6 +16,10 @@ const routes: Routes = [
   },
   {
     path: 'recipes/add',
+    component: AddRecipeComponent
+  },
+  {
+    path: 'recipes/home',
     component: AddRecipeComponent
   }
 ];
