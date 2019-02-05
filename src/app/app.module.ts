@@ -24,6 +24,7 @@ import { RecipesComponent } from './recipes/recipes.component';
 import { HomePageComponent } from './recipes/home-page/home-page.component';
 import { SearchBarComponent } from './recipes/search-bar/search-bar.component';
 import { DataService } from './data.service';
+import { IngredientService } from './ingredient.service';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,7 @@ import { DataService } from './data.service';
     MatFormFieldModule,
     AppRoutingModule
   ],
-  providers: [DataService],
+  providers: [DataService, IngredientService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

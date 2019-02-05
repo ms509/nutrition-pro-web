@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild, ElementRef, EventEmitter, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { DataService } from '../../data.service';
-import { Post } from '../../post';
+import { IngredientService } from '../../ingredient.service';
+import { Ingredient } from '../../ingredient';
 
 @Component({
     selector: 'app-search-bar',
@@ -13,21 +13,21 @@ export class SearchBarComponent implements OnInit {
 
     myControl = new FormControl();
     filteredOptions: Observable<string[]>;
-    allPosts: Post[];
+    allIngredients: Ingredient[];
     autoCompleteList: any[]
 
     @ViewChild('autocompleteInput') autocompleteInput: ElementRef;
     @Output() onSelectedOption = new EventEmitter();
 
     constructor(
-        private dataService: DataService
+        private dataService: IngredientService
     ) { }
 
     ngOnInit() {
 
-        // get all the post
-        this.dataService.getPosts().subscribe(posts => {
-            this.allPosts = posts
+        // get all the ingredients
+        this.dataService.getIngredients().subscribe(ingredients => {
+            this.allIngredients = ingredients
 
         });
 
@@ -51,24 +51,24 @@ export class SearchBarComponent implements OnInit {
         if (val === '' || val === null) {
             return [];
         }
-        return val ? this.allPosts.filter(s => s.title.toLowerCase().indexOf(val.toLowerCase()) != -1)
-            : this.allPosts;
+        return val ? this.allIngredients.filter(s => s.name.toLowerCase().indexOf(val.toLowerCase()) != -1)
+            : this.allIngredients;
     }
 
     // after you clicked an autosuggest option, this function will show the field you want to show in input
-    displayFn(post: Post) {
-        let k = post ? post.title : post;
+    displayFn(ingredient: Ingredient) {
+        let k = ingredient ? ingredient.name : ingredient;
         return k;
     }
 
-    filterPostList(event) {
-        var posts = event.source.value;
-        if (!posts) {
+    filterIngredientList(event) {
+        var ingredients = event.source.value;
+        if (!ingredients) {
             this.dataService.searchOption = []
         }
         else {
 
-            this.dataService.searchOption.push(posts);
+            this.dataService.searchOption.push(ingredients);
             this.onSelectedOption.emit(this.dataService.searchOption)
         }
         this.focusOnPlaceInput();

@@ -1,7 +1,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../data.service';
-import { Post } from '../../post';
+import { Ingredient } from '../../ingredient';
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
@@ -9,15 +9,15 @@ import { Post } from '../../post';
 })
 export class HomePageComponent implements OnInit {
 
-  post: Post[]
+  ingredient: Ingredient[]
   constructor(
     private dataService: DataService
   ) { }
 
   ngOnInit() {
-    this.dataService.getPosts().subscribe(posts => {
-      this.post = posts
-      this.dataService.postsData = posts
+    this.dataService.getPosts().subscribe(ingredients => {
+      this.ingredient = ingredients
+      this.dataService.ingredientsData = ingredients
     });
   }
 
@@ -27,9 +27,9 @@ export class HomePageComponent implements OnInit {
 
   getFilteredExpenseList() {
     if (this.dataService.searchOption.length > 0)
-      this.post = this.dataService.filteredListOptions();
+      this.ingredient = this.dataService.filteredListOptions();
     else {
-      this.post = this.dataService.postsData;
+      this.ingredient = this.dataService.ingredientsData;
     }
 
   }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../../data.service';
-import { Post } from '../../post';
+import { IngredientService } from '../../ingredient.service';
+import { Ingredient } from '../../ingredient';
 
 @Component({
   selector: 'app-add-recipe',
@@ -8,27 +8,27 @@ import { Post } from '../../post';
   styleUrls: ['./add-recipe.component.css']
 })
 export class AddRecipeComponent implements OnInit {
-  	post: Post[]
+  	ingredient: Ingredient[]
   	constructor(
-		private dataService: DataService
+		private dataService: IngredientService
   	) { }
 
 ngOnInit() {
-    this.dataService.getPosts().subscribe(posts => {
-      this.post = posts
-      this.dataService.postsData = posts
+    this.dataService.getIngredients().subscribe(ingredients => {
+      this.ingredient = ingredients
+      this.dataService.ingredientsData = ingredients
     });
   }
 
-  onSelectedFilter(e) {
+ onSelectedOption(e) {
     this.getFilteredExpenseList();
   }
 
   getFilteredExpenseList() {
     if (this.dataService.searchOption.length > 0)
-      this.post = this.dataService.filteredListOptions();
+      this.ingredient = this.dataService.filteredListOptions();
     else {
-      this.post = this.dataService.postsData;
+      this.ingredient = this.dataService.ingredientsData;
     }
 
   }
