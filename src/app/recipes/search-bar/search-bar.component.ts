@@ -57,6 +57,7 @@ export class SearchBarComponent implements OnInit {
             console.log(this.ingredients);
 
         });
+        this.allIngredients = this.ingredients;
         return this.ingredients;
     }
 
@@ -69,6 +70,7 @@ export class SearchBarComponent implements OnInit {
     filterIngredientList(event) {
 
         var ingredients = event.source.value;
+        alert(ingredients.name);
         if (!ingredients) {
             this.ingredientService.searchOption = []
         }

@@ -8,7 +8,6 @@ import { HttpClient, HttpHeaders} from '@angular/common/http';
 })
 export class IngredientService {
        searchOption=[]
-       public ingredientsData: Ingredient[] 
        ingredientUrl : string = "http://localhost:8080/ingredient/get/";
       constructor(private http: HttpClient) { }
       getIngredients(s): Observable<Ingredient[]>{
@@ -16,15 +15,10 @@ export class IngredientService {
       }
 
       filteredListOptions() {
-    let ingredients = this.ingredientsData;
         let filteredIngredientsList = [];
-        for (let ingredient of ingredients) {
             for (let options of this.searchOption) {
-                if (options.name === ingredient.name) {
-                  filteredIngredientsList.push(ingredient);
-                }
+              filteredIngredientsList.push(options);   
             }
-        }
         console.log(filteredIngredientsList);
         return filteredIngredientsList;
   }
