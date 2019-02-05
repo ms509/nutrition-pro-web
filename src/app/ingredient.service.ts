@@ -20,7 +20,7 @@ export class IngredientService {
         let filteredIngredientsList = [];
         for (let ingredient of ingredients) {
             for (let options of this.searchOption) {
-                if (options.title === ingredient.title) {
+                if (options.name === ingredient.name) {
                   filteredIngredientsList.push(ingredient);
                 }
             }

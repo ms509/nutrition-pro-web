@@ -20,10 +20,10 @@ ngOnInit() {
   }
 
  onSelectedOption(e) {
-    this.getFilteredExpenseList();
+    this.getFilteredIngredientList();
   }
 
-  getFilteredExpenseList() {
+  getFilteredIngredientList() {
     if (this.ingredientService.searchOption.length > 0)
       this.ingredient = this.ingredientService.filteredListOptions();
     else {
