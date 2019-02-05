@@ -51,8 +51,13 @@ export class SearchBarComponent implements OnInit {
         if (val === '' || val === null) {
             return [];
         }
-        return val ? this.allIngredients.filter(s => s.name.toLowerCase().indexOf(val.toLowerCase()) != -1)
-            : this.allIngredients;
+        let ingredients = this.allIngredients;
+        this.ingredientService.getIngredients(val).subscribe(res => {
+            this.ingredients = res
+            console.log(this.ingredients);
+
+        });
+        return this.ingredients;
     }
 
     // after you clicked an autosuggest option, this function will show the field you want to show in input
@@ -62,6 +67,7 @@ export class SearchBarComponent implements OnInit {
     }
 
     filterIngredientList(event) {
+
         var ingredients = event.source.value;
         if (!ingredients) {
             this.ingredientService.searchOption = []

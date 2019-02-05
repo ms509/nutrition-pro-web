@@ -9,10 +9,10 @@ import { HttpClient, HttpHeaders} from '@angular/common/http';
 export class IngredientService {
        searchOption=[]
        public ingredientsData: Ingredient[] 
-       ingredientUrl : string = "http://localhost:8080/ingredient/get/ss";
+       ingredientUrl : string = "http://localhost:8080/ingredient/get/";
       constructor(private http: HttpClient) { }
-      getIngredients(): Observable<Ingredient[]>{
-            return this.http.get<Ingredient[]>(this.ingredientUrl);
+      getIngredients(s): Observable<Ingredient[]>{
+            return this.http.get<Ingredient[]>(this.ingredientUrl+s);
       }
 
       filteredListOptions() {
