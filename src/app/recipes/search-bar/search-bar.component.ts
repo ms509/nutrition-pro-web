@@ -20,13 +20,13 @@ export class SearchBarComponent implements OnInit {
     @Output() onSelectedOption = new EventEmitter();
 
     constructor(
-        private dataService: IngredientService
+        private ingredientService: IngredientService
     ) { }
 
     ngOnInit() {
 
         // get all the ingredients
-        this.dataService.getIngredients().subscribe(ingredients => {
+        this.ingredientService.getIngredients().subscribe(ingredients => {
             this.allIngredients = ingredients
 
         });
@@ -64,24 +64,24 @@ export class SearchBarComponent implements OnInit {
     filterIngredientList(event) {
         var ingredients = event.source.value;
         if (!ingredients) {
-            this.dataService.searchOption = []
+            this.ingredientService.searchOption = []
         }
         else {
 
-            this.dataService.searchOption.push(ingredients);
-            this.onSelectedOption.emit(this.dataService.searchOption)
+            this.ingredientService.searchOption.push(ingredients);
+            this.onSelectedOption.emit(this.ingredientService.searchOption)
         }
         this.focusOnPlaceInput();
     }
 
     removeOption(option) {
 
-        let index = this.dataService.searchOption.indexOf(option);
+        let index = this.ingredientService.searchOption.indexOf(option);
         if (index >= 0)
-            this.dataService.searchOption.splice(index, 1);
+            this.ingredientService.searchOption.splice(index, 1);
         this.focusOnPlaceInput();
 
-        this.onSelectedOption.emit(this.dataService.searchOption)
+        this.onSelectedOption.emit(this.ingredientService.searchOption)
     }
 
     // focus the input field and remove any unwanted text.

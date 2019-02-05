@@ -21,9 +21,7 @@ import { FooterComponent } from './footer/footer.component';
 import { IngredientsComponent } from './ingredients/ingredients.component';
 import { AddIngredientComponent } from './ingredients/add-ingredient/add-ingredient.component';
 import { RecipesComponent } from './recipes/recipes.component';
-import { HomePageComponent } from './recipes/home-page/home-page.component';
 import { SearchBarComponent } from './recipes/search-bar/search-bar.component';
-import { DataService } from './data.service';
 import { IngredientService } from './ingredient.service';
 
 @NgModule({
@@ -36,7 +34,6 @@ import { IngredientService } from './ingredient.service';
     IngredientsComponent,
     AddIngredientComponent,
     RecipesComponent,
-    HomePageComponent,
     SearchBarComponent
   ],
   imports: [
@@ -51,7 +48,7 @@ import { IngredientService } from './ingredient.service';
     MatFormFieldModule,
     AppRoutingModule
   ],
-  providers: [DataService, IngredientService],
+  providers: [IngredientService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

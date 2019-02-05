@@ -10,13 +10,12 @@ import { Ingredient } from '../../ingredient';
 export class AddRecipeComponent implements OnInit {
   	ingredient: Ingredient[]
   	constructor(
-		private dataService: IngredientService
+		private ingredientService: IngredientService
   	) { }
 
 ngOnInit() {
-    this.dataService.getIngredients().subscribe(ingredients => {
-      this.ingredient = ingredients
-      this.dataService.ingredientsData = ingredients
+    this.ingredientService.getIngredients().subscribe(ingredients => {
+      this.ingredientService.ingredientsData = ingredients
     });
   }
 
@@ -25,10 +24,10 @@ ngOnInit() {
   }
 
   getFilteredExpenseList() {
-    if (this.dataService.searchOption.length > 0)
-      this.ingredient = this.dataService.filteredListOptions();
+    if (this.ingredientService.searchOption.length > 0)
+      this.ingredient = this.ingredientService.filteredListOptions();
     else {
-      this.ingredient = this.dataService.ingredientsData;
+      this.ingredient = this.ingredientService.ingredientsData;
     }
 
   }
