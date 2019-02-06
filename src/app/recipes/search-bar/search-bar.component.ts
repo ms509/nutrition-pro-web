@@ -26,10 +26,6 @@ export class SearchBarComponent implements OnInit {
     ngOnInit() {
 
         // get all the ingredients
-        this.ingredientService.getIngredients().subscribe(ingredients => {
-            this.allIngredients = ingredients
-
-        });
 
         // when user types something in input, the value changes will come through this
         this.myControl.valueChanges.subscribe(userInput => {
@@ -53,12 +49,12 @@ export class SearchBarComponent implements OnInit {
         }
         let ingredients = this.allIngredients;
         this.ingredientService.getIngredients(val).subscribe(res => {
-            this.ingredients = res
-            console.log(this.ingredients);
+            ingredients = res
+            console.log(ingredients);
 
         });
-        this.allIngredients = this.ingredients;
-        return this.ingredients;
+        this.allIngredients = ingredients;
+        return ingredients;
     }
 
     // after you clicked an autosuggest option, this function will show the field you want to show in input

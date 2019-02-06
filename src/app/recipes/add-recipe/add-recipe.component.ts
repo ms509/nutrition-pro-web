@@ -14,9 +14,6 @@ export class AddRecipeComponent implements OnInit {
   	) { }
 
 ngOnInit() {
-    this.ingredientService.getIngredients().subscribe(ingredients => {
-      this.ingredientService.ingredientsData = ingredients
-    });
   }
 
  onSelectedOption(e) {
@@ -26,9 +23,6 @@ ngOnInit() {
   getFilteredIngredientList() {
     if (this.ingredientService.searchOption.length > 0)
       this.ingredient = this.ingredientService.filteredListOptions();
-    else {
-      this.ingredient = this.ingredientService.ingredientsData;
-    }
 
   }
 
