@@ -11,7 +11,7 @@ import { Ingredient } from '../../ingredient';
 })
 export class SearchBarComponent implements OnInit {
 
-    myControl = new FormControl();
+    ingredientSearch = new FormControl();
     filteredOptions: Observable<string[]>;
     allIngredients: Ingredient[];
     autoCompleteList: any[]
@@ -28,7 +28,7 @@ export class SearchBarComponent implements OnInit {
         // get all the ingredients
 
         // when user types something in input, the value changes will come through this
-        this.myControl.valueChanges.subscribe(userInput => {
+        this.ingredientSearch.valueChanges.subscribe(userInput => {
             this.autoCompleteExpenseList(userInput);
         })
     }
@@ -49,12 +49,9 @@ export class SearchBarComponent implements OnInit {
         }
         let ingredients = this.allIngredients;
         this.ingredientService.getIngredients(val).subscribe(res => {
-            ingredients = res
-            console.log(ingredients);
-
+            this.allIngredients = res
         });
-        this.allIngredients = ingredients;
-        return ingredients;
+        return this.allIngredients;
     }
 
     // after you clicked an autosuggest option, this function will show the field you want to show in input
